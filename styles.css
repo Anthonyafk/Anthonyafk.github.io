@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;700&display=swap');
+
+:root {
+    --color-bg1: #0f0c29;
+    --color-bg2: #302b63;
+    --color-bg3: #24243e;
+    --accent: #00f2fe;
+    --accent-glow: rgba(0, 242, 254, 0.5);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    background-color: #0f0c29;
+    overflow-x: hidden;
+}
+
+.font-monospace {
+    font-family: 'Fira Code', monospace !important;
+}
+
+/* --- Fondo Dinámico Animado --- */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: linear-gradient(45deg, var(--color-bg1), var(--color-bg2), var(--color-bg3));
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Utilidades de Texto --- */
+.text-accent { color: var(--accent) !important; }
+.text-light-50 { color: rgba(255, 255, 255, 0.6) !important; }
+.text-gradient {
+    background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    -webkit-background-clip: text;
+    background-clip: text; 
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- Glassmorphism General --- */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Navbar --- */
+.glass-nav {
+    background: rgba(15, 12, 41, 0.7);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 15px 0;
+    transition: all 0.3s ease;
+}
+
+.custom-link {
+    color: rgba(255,255,255,0.7) !important;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.custom-link:hover { color: var(--accent) !important; }
+
+/* --- Hero Section --- */
+.hero-card {
+    max-width: 800px;
+    animation: floatIn 1s ease-out;
+}
+
+@keyframes floatIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Botones --- */
+.btn-glow {
+    background: linear-gradient(45deg, #4facfe, #00f2fe);
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px var(--accent-glow);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-glow:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px var(--accent-glow);
+    color: #fff;
+}
+
+.btn-glass {
+    background: var(--glass-bg);
+    color: #fff;
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-glass:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--accent);
+    transform: translateY(-3px);
+}
+
+/* --- Scrolling Stack (Marquesina Infinita) --- */
+.scrolling-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    padding: 20px 0;
+}
+
+.scrolling-wrapper::before,
+.scrolling-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+}
+.scrolling-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--color-bg1), transparent);
+}
+.scrolling-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--color-bg1), transparent);
+}
+
+.scrolling-content {
+    display: inline-flex;
+    width: max-content; /* ESTO ES VITAL PARA EL LOOP INFINITO */
+    animation: scrollText 30s linear infinite; /* Tiempo aumentado ligeramente para lectura */
+}
+
+.scrolling-content:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollText {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.glass-badge, .badge-accent {
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-family: 'Fira Code', monospace;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.glass-badge {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+}
+
+.badge-accent {
+    background: rgba(0, 242, 254, 0.1);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+}
+
+/* --- Tarjetas de Proyectos --- */
+.project-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 16px;
+    padding: 2px;
+    background: linear-gradient(45deg, transparent, var(--accent), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none; 
+    z-index: 1;
+}
+
+.project-card > div,
+.project-card > h4,
+.project-card > p {
+    position: relative;
+    z-index: 2;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+.project-link {
+    transition: color 0.3s;
+}
+
+.project-link:hover {
+    color: var(--accent) !important;
+}
+
+/* Control de z-index */
+.z-index-1 {
+    z-index: 1;
+}
