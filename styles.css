@@ -234,6 +234,71 @@ body {
     color: var(--accent) !important;
 }
 
+/* --- CV Section --- */
+.cv-card {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.cv-layout {
+    display: grid;
+    grid-template-columns: 0.95fr 1.25fr;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.cv-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 0.5rem;
+}
+
+.cv-frame-label {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    background: rgba(0, 242, 254, 0.12);
+    border: 1px solid rgba(0, 242, 254, 0.25);
+    color: var(--accent);
+    width: fit-content;
+}
+
+.cv-frame-wrapper {
+    width: 100%;
+    min-height: 75vh;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.cv-frame {
+    width: 100%;
+    height: calc(75vh - 2.2rem);
+    border: 0;
+}
+
+@media (max-width: 991.98px) {
+    .cv-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cv-copy {
+        padding-right: 0;
+    }
+
+    .cv-frame-wrapper {
+        min-height: 65vh;
+    }
+
+    .cv-frame {
+        height: calc(65vh - 2.2rem);
+    }
+}
+
 /* Control de z-index */
 .z-index-1 {
     z-index: 1;
